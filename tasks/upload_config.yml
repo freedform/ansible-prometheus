@@ -1,0 +1,15 @@
+- name: Validate variables for install.yml task
+  ansible.builtin.assert:
+    that:
+      - prometheus_user is defined
+      - prometheus_dir is defined
+      - prometheus_config is defined
+
+
+- name: Deploy config
+  ansible.builtin.copy:
+    dest: "{{ prometheus_dir }}/prometheus.yml"
+    content: "{{ prometheus_config | to_yaml }}"
+    owner: "{{ prometheus_user }}"
+    group: "{{ prometheus_user }}"
+    mode: "0644"

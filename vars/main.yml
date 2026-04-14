@@ -1,0 +1,10 @@
+prometheus_supported_actions:
+  - install
+  - upload_config
+  - state_control
+
+prometheus_supported_states:
+  - started
+  - stopped
+  - restarted
+  - reloaded

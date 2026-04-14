@@ -1,0 +1,24 @@
+prometheus_version: 3.5.1
+prometheus_download_base: https://github.com/prometheus/prometheus/releases/download
+prometheus_download_url: "{{ prometheus_download_base }}/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+prometheus_download_dir: /tmp
+
+prometheus_bin_dir: /usr/local/bin
+
+prometheus_user: prometheus
+
+prometheus_dir: /opt/prometheus
+prometheus_data_path: "{{ prometheus_dir }}/data"
+prometheus_config_path: "{{ prometheus_dir }}/prometheus.yml"
+
+prometheus_retention_size: 10GB
+prometheus_retention_time: 15d
+
+prometheus_config:
+  global:
+    scrape_interval: 15s
+  scrape_configs:
+    - job_name: targets
+      static_configs:
+        - targets:
+            - localhost:9090

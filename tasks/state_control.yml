@@ -1,0 +1,9 @@
+- name: Validate variables for state_control.yml task
+  ansible.builtin.assert:
+    that:
+      - prometheus_state in prometheus_supported_states
+
+- name: Manage prometheus state
+  ansible.builtin.service:
+    name: prometheus
+    state: "{{ prometheus_state }}"
