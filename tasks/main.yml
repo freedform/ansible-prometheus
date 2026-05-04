@@ -15,14 +15,8 @@
       - prometheus_action_list | length > 0
       - prometheus_action_list | difference(prometheus_supported_actions) | length == 0
 
-- name: Install prometheus
-  when: "'install' in prometheus_action_list"
-  ansible.builtin.include_tasks: install.yml
-
-- name: Upload configuration files
-  when: "'upload_config' in prometheus_action_list"
-  ansible.builtin.include_tasks: upload_config.yml
-
-- name: Control prometheus state
-  when: "'state_control' in prometheus_action_list"
-  ansible.builtin.include_tasks: state_control.yml
+- name: Deploy Prometheus
+  ansible.builtin.include_tasks: "{{ task_name }}.yml"
+  loop: "{{ prometheus_action_list }}"
+  loop_control:
+    loop_var: task_name
