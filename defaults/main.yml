@@ -1,19 +1,64 @@
+# @var prometheus_actions:description: >
+# List of actions the role does, accepts one or more actions.
+# Use comma without spaces as a delimiter for multiple actions. 
+# @var prometheus_actions:required: `true`
+# @var prometheus_actions:type: String
+# @var prometheus_actions:example: >
+#   prometheus_actions: install
+#   prometheus_actions: install,state_control
+# @end
+
+# @var prometheus_state:description: TPC port node exporter uses to expose collected metrics
+# @var prometheus_state:type: String
+# @var prometheus_state:required: `true`, only in case `prometheus_actions: state_control`
+# @var prometheus_state:example: >
+#   prometheus_state: started
+#   prometheus_state: restarted
+# @end
+
+# @var prometheus_version:description: Node exporter version to be installed
+# @var prometheus_version:type: String
+# @end
 prometheus_version: 3.5.1
+
+# @var prometheus_download_base:description: Base URL to download installation artifacts
+# @var prometheus_download_base:type: String
+# @end
 prometheus_download_base: https://github.com/prometheus/prometheus/releases/download
-prometheus_download_url: "{{ prometheus_download_base }}/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+
+# @var prometheus_download_dir:description: Destination directory for downloading node exporter binaries
+# @var prometheus_download_dir:type: String
+# @end
 prometheus_download_dir: /tmp
 
+# @var prometheus_bin_dir:description: PATH directory for installed binary
+# @var prometheus_bin_dir:type: String
+# @end
 prometheus_bin_dir: /usr/local/bin
 
+# @var prometheus_user:description: Linux user name to run node exporter service
+# @var prometheus_user:type: String
+# @end
 prometheus_user: prometheus
 
+# @var prometheus_dir:description: Location of Prometheus data
+# @var prometheus_dir:type: String
+# @end
 prometheus_dir: /opt/prometheus
-prometheus_data_path: "{{ prometheus_dir }}/data"
-prometheus_config_path: "{{ prometheus_dir }}/prometheus.yml"
 
+# @var prometheus_retention_size:description: Prometheus data retention size.
+# @var prometheus_retention_size:type: String
+# @end
 prometheus_retention_size: 10GB
+
+# @var prometheus_retention_time:description: Prometheus data retention time.
+# @var prometheus_retention_time:type: String
+# @end
 prometheus_retention_time: 15d
 
+# @var prometheus_retention_time:description: Prometheus default config.
+# @var prometheus_retention_time:type: Dict
+# @end
 prometheus_config:
   global:
     scrape_interval: 15s
