@@ -1,14 +1,13 @@
-- name: Validate variables for install.yml task
+- name: Validate variables for upload_config.yml task
   ansible.builtin.assert:
     that:
       - prometheus_user is defined
-      - prometheus_dir is defined
+      - prometheus_config_path is defined
       - prometheus_config is defined
-
 
 - name: Deploy config
   ansible.builtin.copy:
-    dest: "{{ prometheus_dir }}/prometheus.yml"
+    dest: "{{ prometheus_config_path }}"
     content: "{{ prometheus_config | to_yaml }}"
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_user }}"

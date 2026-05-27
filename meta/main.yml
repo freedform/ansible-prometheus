@@ -1,6 +1,6 @@
 galaxy_info:
   author: freedform
-  description: Role prometheus fully automates deployment of Prometheus and all it configuration. 
+  description: Role prometheus fully automates deployment of Prometheus and all its configuration.
   min_ansible_version: "2.20"
   license: MIT
 

@@ -4,10 +4,11 @@ After=network.target
 
 [Service]
 User={{ prometheus_user }}
-ExecStart=/usr/local/bin/prometheus \
+ExecStart={{ prometheus_bin_dir }}/prometheus \
     --config.file={{ prometheus_config_path }} \
     --storage.tsdb.path={{ prometheus_data_path }} \
     --storage.tsdb.retention.time={{ prometheus_retention_time }} \
     --storage.tsdb.retention.size={{ prometheus_retention_size }}
+
 [Install]
 WantedBy=multi-user.target

@@ -12,7 +12,6 @@
 - name: Validate prometheus_action_list
   ansible.builtin.assert:
     that:
-      - prometheus_action_list | length > 0
       - prometheus_action_list | difference(prometheus_supported_actions) | length == 0
 
 - name: Deploy Prometheus

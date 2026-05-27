@@ -1,6 +1,6 @@
 # prometheus
 
-Role prometheus fully automates deployment of Prometheus and all it configuration.
+Role prometheus fully automates deployment of Prometheus and all its configuration.
 
 ## Table of contents
 
@@ -46,7 +46,7 @@ Use comma without spaces as a delimiter for multiple actions.
 
 ### prometheus_bin_dir
 
-PATH directory for installed binary
+PATH directory for installed binaries
 
 **_Type:_** String<br />
 
@@ -57,6 +57,10 @@ prometheus_bin_dir: /usr/local/bin
 ```
 
 ### prometheus_config
+
+Prometheus default configuration
+
+**_Type:_** Dict<br />
 
 #### Default value
 
@@ -73,7 +77,7 @@ prometheus_config:
 
 ### prometheus_dir
 
-Location of Prometheus data
+Location of Prometheus data and configuration
 
 **_Type:_** String<br />
 
@@ -97,7 +101,7 @@ prometheus_download_base: https://github.com/prometheus/prometheus/releases/down
 
 ### prometheus_download_dir
 
-Destination directory for downloading node exporter binaries
+Destination directory for downloading Prometheus binaries
 
 **_Type:_** String<br />
 
@@ -109,7 +113,7 @@ prometheus_download_dir: /tmp
 
 ### prometheus_retention_size
 
-Prometheus data retention size.
+Prometheus data retention size
 
 **_Type:_** String<br />
 
@@ -121,9 +125,9 @@ prometheus_retention_size: 10GB
 
 ### prometheus_retention_time
 
-Prometheus default config.
+Prometheus data retention time
 
-**_Type:_** Dict<br />
+**_Type:_** String<br />
 
 #### Default value
 
@@ -133,7 +137,7 @@ prometheus_retention_time: 15d
 
 ### prometheus_state
 
-TPC port node exporter uses to expose collected metrics
+Target state for the Prometheus daemon
 
 **_Required:_** `true`, only in case `prometheus_actions: state_control`<br />
 **_Type:_** String<br />
@@ -147,7 +151,7 @@ TPC port node exporter uses to expose collected metrics
 
 ### prometheus_user
 
-Linux user name to run node exporter service
+Linux user name to run the Prometheus service
 
 **_Type:_** String<br />
 
@@ -159,7 +163,7 @@ prometheus_user: prometheus
 
 ### prometheus_version
 
-Node exporter version to be installed
+Prometheus version to be installed
 
 **_Type:_** String<br />
 

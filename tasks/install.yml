@@ -60,6 +60,10 @@
     group: root
     mode: "0644"
 
+- name: Reload systemd daemon
+  ansible.builtin.systemd:
+    daemon_reload: true
+
 - name: Enable prometheus service
   ansible.builtin.service:
     name: prometheus
