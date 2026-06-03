@@ -1,18 +1,13 @@
-- name: Validate prometheus_action_list
-  ansible.builtin.assert:
-    that:
-      - prometheus_actions is defined
-      - prometheus_actions is string
-      - prometheus_actions | length > 0
-
 - name: Create prometheus_action_list
   ansible.builtin.set_fact:
-    prometheus_action_list: "{{ prometheus_actions.split(',') }}"
+    prometheus_action_list: "{{ (prometheus_actions | default('')).split(',') | reject('equalto', '') | list }}"
 
 - name: Validate prometheus_action_list
   ansible.builtin.assert:
     that:
+      - prometheus_action_list | length > 0
       - prometheus_action_list | difference(prometheus_supported_actions) | length == 0
+    fail_msg: "prometheus_actions must be set to one or more of: {{ prometheus_supported_actions | join(', ') }}"
 
 - name: Deploy Prometheus
   ansible.builtin.include_tasks: "{{ task_name }}.yml"

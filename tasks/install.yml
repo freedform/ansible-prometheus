@@ -9,6 +9,12 @@
       - prometheus_download_dir is defined
       - prometheus_bin_dir is defined
 
+- name: Create user
+  ansible.builtin.user:
+    name: "{{ prometheus_user }}"
+    shell: /usr/sbin/nologin
+    system: true
+
 - name: Create directories
   ansible.builtin.file:
     path: "{{ item }}"
